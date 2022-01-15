@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         //Using Shared Preferences for persistent storage
-        preferences = getSharedPreferences("UserValidation",MODE_PRIVATE);
+        preferences = getSharedPreferences("UserAuthentication",MODE_PRIVATE);
 
 
         //Create a new activity for registration and store the User's data from the new page/activity in the SQl database
@@ -40,23 +40,25 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener regListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String userNameValue = username.getText().toString();
                 String pwdValue = password.getText().toString();
+
                 // Save values to preferences
                 preferences.edit().putString("UserName", userNameValue).apply();
                 preferences.edit().putString("Password", pwdValue).apply();
-                Toast.makeText(MainActivity.this, "Username Saved - " + userNameValue + "\nPassword saved - " + pwdValue, Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(MainActivity.this, "Username Saved - " + userNameValue + "\nPassword saved - " + pwdValue, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(MainActivity.this, "Pa Saved - " + pwdValue, Toast.LENGTH_SHORT).show();
 
                 //Moving to the next page
-
                 Intent intent = new Intent(MainActivity.this, NewUser.class);
                 startActivity(intent);
             }
         };
 
         // Take in String Values again from the text Field and check if Username and Password exist in SQL database
-        //OnClick Listener for Login button
+        // OnClick Listener for Login button
         View.OnClickListener loginListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Username - "+ userNameOutput + "\nPassword - "+ pwdOutput, Toast.LENGTH_SHORT).show();
 //                Toast.makeText(MainActivity.this, pwdOutput, Toast.LENGTH_SHORT).show();
-
             }
         };
 

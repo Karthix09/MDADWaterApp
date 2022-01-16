@@ -10,7 +10,9 @@
         android:label="DrinkUp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MyPracticeApplication">
+
         <activity
             android:name=".NewUserConfirmation"
             android:exported="false" />

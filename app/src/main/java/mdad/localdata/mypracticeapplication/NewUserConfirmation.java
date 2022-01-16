@@ -94,7 +94,7 @@ public class NewUserConfirmation extends AppCompatActivity {
                 }
                 catch(JSONException e){
 
-                };
+                }
 
                 postAPIRequest(dataJson);
 
@@ -157,27 +157,28 @@ public class NewUserConfirmation extends AppCompatActivity {
 
 
         // Request a JSON RESPONSE from the provided URL
-        JsonObjectRequest json_obj_req = new JsonObjectRequest(
-                Request.Method.POST,url,dataJson,new Response.Listener<JSONObject>(){
+        JsonObjectRequest json_obj_req = new JsonObjectRequest(Request.Method.POST, url, dataJson, new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response){
                 Toast.makeText(NewUserConfirmation.this, "Your Details have been saved", Toast.LENGTH_SHORT).show();
             }
 
-        },new Response.ErrorListener(){
+        }, new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error){
                 Toast.makeText(NewUserConfirmation.this, "ERROR", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
 
-
-
         });
+//        {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("Content-Type", "application/json");
+//                return params;
+//            }
+//        };
         requestQueue.add(json_obj_req);
-
     }
-
-
-
 }

@@ -49,13 +49,15 @@ public class NewUserWeight extends AppCompatActivity {
         View.OnClickListener confirmBtnListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Save Age to preferences
-                preferences.edit().putInt("UserWeight", userWeight).apply();
+
                 Log.d("UserWeight", "weight:"+userWeight);
                 if (userWeight==0){
                     Toast.makeText(NewUserWeight.this, "Please select your Weight", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    // Save Age to preferences
+                    preferences.edit().putInt("UserWeight", userWeight).apply();
+
                     Intent newPage = new Intent(NewUserWeight.this, NewUserSleepTime.class);
                     startActivity(newPage);
                 }

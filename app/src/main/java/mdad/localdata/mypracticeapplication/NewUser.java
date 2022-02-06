@@ -57,10 +57,6 @@ public class NewUser extends AppCompatActivity{
                 String userNameText = userName.getText().toString();
                 String pwdText = password.getText().toString();
 
-                // Save changed/retrieved values to preferences
-                preferences.edit().putString("UserName", userNameText).apply();
-                preferences.edit().putString("Password", pwdText).apply();
-                preferences.edit().putString("Gender", selectedGender).apply();
 
 //                Log.d("Gender", selectedGender);
 
@@ -71,6 +67,12 @@ public class NewUser extends AppCompatActivity{
                 }
                 else {
                     if(maleBtn.isChecked() || femaleBtn.isChecked()){
+
+                        // Save changed/retrieved values to preferences
+                        preferences.edit().putString("UserName", userNameText).apply();
+                        preferences.edit().putString("Password", pwdText).apply();
+                        preferences.edit().putString("Gender", selectedGender).apply();
+
                         Intent intent = new Intent(NewUser.this, NewUserAge.class);
                         startActivity(intent);
                     }

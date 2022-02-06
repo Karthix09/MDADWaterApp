@@ -3,10 +3,14 @@ package mdad.localdata.mypracticeapplication;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.ArraySet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.CellSignalStrengthGsm;
@@ -14,7 +18,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -29,12 +35,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class NewUserConfirmation extends AppCompatActivity {
 
     Button finalConfirmBtn;
+    ListView listView;
 
     SharedPreferences preferences;
 
@@ -45,6 +53,7 @@ public class NewUserConfirmation extends AppCompatActivity {
     int userWeight;
     String userBedTime;
     String userWakeUpTime;
+    int id;
 
 
     @Override
@@ -53,6 +62,8 @@ public class NewUserConfirmation extends AppCompatActivity {
         setContentView(R.layout.activity_new_user_confirmation);
 
         finalConfirmBtn = findViewById(R.id.confirm_Button2);
+
+        listView = findViewById(R.id.listView);
 
         //Getting shared preferences to display the data for registration
         preferences = getSharedPreferences("UserAuthentication",MODE_PRIVATE);
@@ -65,6 +76,21 @@ public class NewUserConfirmation extends AppCompatActivity {
         userBedTime = preferences.getString("UserBedTime","");
         userWakeUpTime = preferences.getString("UserWakeUpTime","");
 
+        //Creating and Array to display the Data for confirmation on the listView
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        //Adding the data in the list
+        arrayList.add("Your Username: " + userName);
+        arrayList.add("Your Password: " + password);
+        arrayList.add("Your Gender: " + gender);
+        arrayList.add("Your Age: " + userAge);
+        arrayList.add("Your Weight: " + userWeight);
+        arrayList.add("Your Bed Time: " + userBedTime);
+        arrayList.add("Your WakeUp Time: " + userWakeUpTime);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
+
+        listView.setAdapter(arrayAdapter);
 
 
         //OnClick for button to export data to database using Volley
@@ -81,8 +107,9 @@ public class NewUserConfirmation extends AppCompatActivity {
                 Log.d("BedTime", ""+ userBedTime);
                 Log.d("WakeUpTime", ""+ userWakeUpTime);
 
+                //Creating JSON Object to send it in the POST request
                 JSONObject dataJson = new JSONObject();
-                try{
+                try {
                     dataJson.put("Username",userName);
                     dataJson.put("Password", password);
                     dataJson.put("Gender", gender);
@@ -96,10 +123,30 @@ public class NewUserConfirmation extends AppCompatActivity {
 
                 }
 
-                postAPIRequest(dataJson);
+                //Alert Dialog for confirmation to POST data upon Confirmation
+                AlertDialog alertDialog = new AlertDialog.Builder(NewUserConfirmation.this).create();
+                alertDialog.setTitle("Confirmation");
+                alertDialog.setMessage("Are you sure you would like to proceed ?");
 
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //POST REQUEST TO SAVE IN SQL DATABASE
+                        postAPIRequest(dataJson);
+
+                    }
+                });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialog.show();
             }
         };
+
         finalConfirmBtn.setOnClickListener(confirmBtnListener);
 
     }
@@ -110,57 +157,22 @@ public class NewUserConfirmation extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = "http://drinkup.atspace.cc/create_userJson.php";
 
-////         Request a STRING RESPONSE from the provided URL.
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // Make a toast success message
-//                        Toast.makeText(NewUserConfirmation.this, "Your data is saved", Toast.LENGTH_SHORT).show();
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-////                textView.setText("That didn't work!");
-//                Toast.makeText(NewUserConfirmation.this, "ERROR", Toast.LENGTH_SHORT).show();
-//            }
-//        }) {
-//            @NonNull
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError { // POST Method Sending data in body
-//
-//                HashMap<String, String> params = new HashMap();
-//                params.put("Username", userName);
-//                params.put("Password", password);
-//                params.put("Gender", gender);
-//                params.put("Age", String.format("", userAge));
-//                params.put("Weight", String.format("", userWeight));
-//                params.put("WakeUpTime", userWakeUpTime);
-//                params.put("SleepTime", userBedTime);
-//
-////                JSONObject jo = new JSONObject(params);
-//
-//                return params;
-//
-//            }
-////            @Override
-////            public Map<String, String> getHeaders() throws AuthFailureError {
-////                Map<String, String> params = new HashMap<String, String>();
-////                params.put("Content-Type", "application/json");
-////                return params;
-////            }
-//
-//        };
-//
-//        // Add the request to the RequestQueue.
-//        queue.add(stringRequest);
-
 
         // Request a JSON RESPONSE from the provided URL
         JsonObjectRequest json_obj_req = new JsonObjectRequest(Request.Method.POST, url, dataJson, new Response.Listener<JSONObject>(){
             @Override
             public void onResponse(JSONObject response){
+
                 Toast.makeText(NewUserConfirmation.this, "Your Details have been saved", Toast.LENGTH_SHORT).show();
+
+                //Save Data in SQLite database
+                //saveLocalStorage();
+
+                //Intent to go to MainActivity to Sign In
+                Intent newPage = new Intent(NewUserConfirmation.this, MainActivity.class);
+                // set the new task and clear flags
+                newPage.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(newPage);
             }
 
         }, new Response.ErrorListener(){
@@ -171,14 +183,22 @@ public class NewUserConfirmation extends AppCompatActivity {
             }
 
         });
-//        {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("Content-Type", "application/json");
-//                return params;
-//            }
-//        };
+
         requestQueue.add(json_obj_req);
     }
+
+//    void saveLocalStorage() {
+//
+//        SqliteDatabaseHelper databaseHelper = new SqliteDatabaseHelper(NewUserConfirmation.this);
+//
+//        Boolean checkInsert = databaseHelper.insertData(id, userName,password, gender, userAge, userWeight, userWakeUpTime, userBedTime);
+//
+//        if (checkInsert == true){
+//            Toast.makeText(NewUserConfirmation.this, "Inserted to local DB", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            Toast.makeText(NewUserConfirmation.this, "FAILED-local DB", Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DashboardFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <me.itangqi.waveloadingview.WaveLoadingView
+        android:id="@+id/waveLoadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:elevation="20dp"
+        app:wlv_borderColor="@color/blue"
+        app:wlv_borderWidth="3dp"
+        app:wlv_progressValue="20"
+        app:wlv_round_rectangle="true"
+        app:wlv_shapeType="rectangle"
+        app:wlv_titleCenter="Water Requirement"
+        app:wlv_titleCenterColor="@android:color/white"
+        app:wlv_titleCenterSize="24sp"
+        app:wlv_titleCenterStrokeColor="@android:color/white"
+        app:wlv_titleCenterStrokeWidth="2dp"
+        app:wlv_triangle_direction="north"
+        app:wlv_waveAmplitude="30"
+        app:wlv_waveColor="@color/DodgerBlue" />
+
+    <Button
+        android:id="@+id/drankUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/button_corners"
+        android:text="DRANK UP">
+    </Button>
+
+
+</FrameLayout>

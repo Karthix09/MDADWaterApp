@@ -17,17 +17,11 @@ public class WaterRequirementComputation {
         else if(user_weight >= 75 && user_weight < 90){
             user_waterRequirement = 3000;
         }
-        else if(user_weight >= 90 && user_weight < 105){
+        else if(user_weight >= 90 && user_weight < 120){
             user_waterRequirement = 3500;
         }
-        else if(user_weight >= 105 && user_weight < 120){
+        else{
             user_waterRequirement = 4000;
-        }
-        else if(user_weight >= 120 && user_weight < 135){
-            user_waterRequirement = 4200;
-        }
-        else {
-            user_waterRequirement = 4500;
         }
         return user_waterRequirement;
     }

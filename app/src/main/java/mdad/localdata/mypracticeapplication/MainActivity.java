@@ -32,13 +32,19 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
     //Variables to store retrieved user info from database
+    int user_id;
     String user_username;
     String user_gender;
     int user_age;
     int user_weight;
     String user_wakeUpTime;
     String user_bedTime;
+    int user_waterRequirement;
+    int user_waterDrankPerc;
+    String user_waterStatus;
 
+    //Loading dialog
+    final LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Using Shared Preferences for persistent storage
         preferences = getSharedPreferences("UserAuthentication",MODE_PRIVATE);
+
+
 
 
         //OnClick Listener for Register button
@@ -106,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Log.d("JSON format credentials", String.valueOf(dataJson));
 
+                    loadingDialog.startLoadingDialog();
                     loginCheckAPI(dataJson);
                 }
 //                    if (userNameValue.matches(userNameSaved) && pwdValue.matches(pwdSaved)){
@@ -148,15 +157,19 @@ public class MainActivity extends AppCompatActivity {
                         //Getting user JSON array from response
                         JSONArray userdata;
                         userdata = response.getJSONArray("user");
-
+//                        Log.d("User JSONArray response", ""+ userdata);
                         for (int i = 0; i<userdata.length(); i++) {
                             JSONObject userObject = userdata.getJSONObject(i);
+                            user_id = userObject.getInt("UserID");
                             user_username = userObject.getString("Username");
                             user_gender = userObject.getString("Gender");
                             user_age = userObject.getInt("Age");
                             user_weight= userObject.getInt("Weight");
                             user_wakeUpTime = userObject.getString("WakeUpTime");
                             user_bedTime = userObject.getString("SleepTime");
+                            user_waterRequirement = userObject.getInt("WaterRequirement");
+                            user_waterDrankPerc = userObject.getInt("WaterDrankPerc");
+                            user_waterStatus = userObject.getString("WaterCompletion");
 
                         }
 
@@ -164,18 +177,23 @@ public class MainActivity extends AppCompatActivity {
                         Intent nextPage = new Intent(MainActivity.this, Dashboard.class);
 
                         //Passing values to next Page
+                        nextPage.putExtra("UserId", user_id);
                         nextPage.putExtra("Username", user_username);
                         nextPage.putExtra("Gender", user_gender);
                         nextPage.putExtra("Age", user_age);
                         nextPage.putExtra("Weight", user_weight);
                         nextPage.putExtra("WakeUpTime", user_wakeUpTime);
                         nextPage.putExtra("BedTime", user_bedTime);
-
+                        nextPage.putExtra("WaterRequirement", user_waterRequirement);
+                        nextPage.putExtra("WaterDrankPerc", user_waterDrankPerc);
+                        nextPage.putExtra("WaterCompletionStatus", user_waterStatus);
+                        loadingDialog.dismissDialog();
                         startActivity(nextPage);
                         finish(); // Kill activity
                     }
                     else{
                         Toast.makeText(MainActivity.this, "Username or Password does not exit!", Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismissDialog();
                     }
 
 

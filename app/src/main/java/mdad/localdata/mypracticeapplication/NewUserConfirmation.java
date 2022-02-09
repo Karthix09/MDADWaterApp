@@ -46,6 +46,9 @@ public class NewUserConfirmation extends AppCompatActivity {
 
     SharedPreferences preferences;
 
+    //Variable to store the water requirement
+    int user_waterRequirement;
+
     String userName;
     String password;
     String gender;
@@ -76,6 +79,27 @@ public class NewUserConfirmation extends AppCompatActivity {
         userBedTime = preferences.getString("UserBedTime","");
         userWakeUpTime = preferences.getString("UserWakeUpTime","");
 
+        WaterRequirementComputation wrc = new WaterRequirementComputation();
+        user_waterRequirement = wrc.waterRequirement(userWeight);
+
+        //Pop Up dialogue to show Water Requirement
+        new AlertDialog.Builder(NewUserConfirmation.this)
+                .setTitle("Water Intake Goal")
+                .setMessage("Your daily Water Intake Goal is " + user_waterRequirement + "ml")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.btn_star_big_on)
+                .show();
+
         //Creating and Array to display the Data for confirmation on the listView
         ArrayList<String> arrayList = new ArrayList<>();
 
@@ -87,6 +111,8 @@ public class NewUserConfirmation extends AppCompatActivity {
         arrayList.add("Your Weight: " + userWeight);
         arrayList.add("Your Bed Time: " + userBedTime);
         arrayList.add("Your WakeUp Time: " + userWakeUpTime);
+        arrayList.add("Your Daily Water Intake Goal: " + user_waterRequirement + "ml");
+
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
 
@@ -106,6 +132,7 @@ public class NewUserConfirmation extends AppCompatActivity {
                 Log.d("Weight", ""+ userWeight);
                 Log.d("BedTime", ""+ userBedTime);
                 Log.d("WakeUpTime", ""+ userWakeUpTime);
+                Log.d("Water Intake Goal", ""+ user_waterRequirement);
 
                 //Creating JSON Object to send it in the POST request
                 JSONObject dataJson = new JSONObject();
@@ -117,7 +144,7 @@ public class NewUserConfirmation extends AppCompatActivity {
                     dataJson.put("Weight", userWeight);
                     dataJson.put("WakeUpTime", userWakeUpTime);
                     dataJson.put("SleepTime", userBedTime);
-
+                    dataJson.put("WaterRequirement", user_waterRequirement);
                 }
                 catch(JSONException e){
 
@@ -165,9 +192,6 @@ public class NewUserConfirmation extends AppCompatActivity {
 
                 Toast.makeText(NewUserConfirmation.this, "Your Details have been saved", Toast.LENGTH_SHORT).show();
 
-                //Save Data in SQLite database
-                //saveLocalStorage();
-
                 //Intent to go to MainActivity to Sign In
                 Intent newPage = new Intent(NewUserConfirmation.this, MainActivity.class);
                 // set the new task and clear flags
@@ -186,6 +210,8 @@ public class NewUserConfirmation extends AppCompatActivity {
 
         requestQueue.add(json_obj_req);
     }
+
+
 
 //    void saveLocalStorage() {
 //

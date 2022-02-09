@@ -26,33 +26,45 @@ public class Dashboard extends AppCompatActivity {
 //    WaveLoadingView mWaveLoadingView;
 
     //Variables to store retrieved user info from MainActivity
+    int user_id;
     String user_username;
     String user_gender;
     int user_age;
     int user_weight;
     String user_wakeUpTime;
     String user_bedTime;
+    int user_waterRequirement;
+    int user_waterDrankPerc;
+    String user_waterStatus;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        user_id = getIntent().getIntExtra("UserId", 0);
         user_username = getIntent().getStringExtra("Username");
         user_gender = getIntent().getStringExtra("Gender");
         user_age = getIntent().getIntExtra("Age", 0);
         user_weight = getIntent().getIntExtra("Weight", 0);
         user_wakeUpTime = getIntent().getStringExtra("WakeUpTime");
         user_bedTime = getIntent().getStringExtra("BedTime");
+        user_waterRequirement = getIntent().getIntExtra("WaterRequirement", 0);
+        user_waterDrankPerc = getIntent().getIntExtra("WaterDrankPerc",0);
+        user_waterStatus = getIntent().getStringExtra("WaterCompletionStatus");
 
+        Log.d("Dashboard UserId", ""+user_id);
         Log.d("Dashboard Username", ""+user_username);
         Log.d("Dashboard gender", ""+user_gender);
         Log.d("Dashboard age", ""+user_age);
         Log.d("Dashboard weight", ""+user_weight);
         Log.d("Dashboard wakeUpTime", ""+user_wakeUpTime);
         Log.d("Dashboard bedTime", ""+user_bedTime);
-
-
+        Log.d("Dashboard UserWaterReq", ""+user_waterRequirement);
+        Log.d("Dashboard UserDrank", ""+user_waterDrankPerc);
+        Log.d("Dashboard UserWaterStat", ""+user_waterStatus);
 
         //Bottom Navigation
         bottomNav = findViewById(R.id.bottomNavigationView);
@@ -60,12 +72,16 @@ public class Dashboard extends AppCompatActivity {
         //Creating and Object for fragment
         DashboardFragment main = new DashboardFragment();
         Bundle newPage = new Bundle();
+        newPage.putInt("UserId", user_id);
         newPage.putString("Username", user_username);
         newPage.putString("Gender", user_gender);
         newPage.putInt("Weight", user_weight);
         newPage.putInt("Age", user_age);
         newPage.putString("WakeUpTime", user_wakeUpTime);
         newPage.putString("BedTime", user_bedTime);
+        newPage.putInt("WaterRequirement", user_waterRequirement);
+        newPage.putInt("WaterDrankPerc", user_waterDrankPerc);
+        newPage.putString("WaterCompletionStatus", user_waterStatus);
 //        Log.d("DashBoardFrag", "Age in Activity:" + age);
         main.setArguments(newPage);
 

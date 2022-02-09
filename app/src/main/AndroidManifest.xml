@@ -15,8 +15,8 @@
 
         <activity
             android:name=".Dashboard"
-            android:exported="true">
-
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".NewUserConfirmation"
@@ -35,7 +35,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

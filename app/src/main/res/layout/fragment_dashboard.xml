@@ -16,16 +16,13 @@
         app:elevation="20dp"
         app:wlv_borderColor="@color/blue"
         app:wlv_borderWidth="3dp"
-        app:wlv_progressValue="20"
         app:wlv_round_rectangle="true"
         app:wlv_shapeType="rectangle"
-        app:wlv_titleCenter="Water Requirement"
-        app:wlv_titleCenterColor="@android:color/white"
+        app:wlv_titleCenterColor="@color/Cyan"
         app:wlv_titleCenterSize="24sp"
-        app:wlv_titleCenterStrokeColor="@android:color/white"
+        app:wlv_titleCenterStrokeColor="@color/Navy"
         app:wlv_titleCenterStrokeWidth="2dp"
-        app:wlv_triangle_direction="north"
-        app:wlv_waveAmplitude="30"
+        app:wlv_waveAmplitude="5"
         app:wlv_waveColor="@color/DodgerBlue" />
 
     <Button

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kanna/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable-watch/sym_def_app_icon.xml" value="0.190625" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/MyPracticeApplication/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/MyPracticeApplication/app/src/main/res/layout/activity_new_user.xml" value="0.33" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
@@ -17,7 +18,8 @@
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/activity_new_user_confirmation.xml" value="0.16" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/activity_new_user_sleep_time.xml" value="0.2015625" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/activity_new_user_weight.xml" value="0.25" />
-        <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/customloading_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.2765957446808511" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/fragment_leaderboard.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kanna/Desktop/Mobile Device App Development (MDAD)/ProjectWaterApp/MDADWaterApp/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />

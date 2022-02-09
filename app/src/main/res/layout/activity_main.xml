@@ -10,54 +10,60 @@
         android:id="@+id/signUpBtn"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:text="Create an account"
+        android:layout_marginTop="44dp"
         android:background="@drawable/button_corners"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Create an account"
         app:layout_constraintEnd_toEndOf="@+id/loginBtn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/loginBtn"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.817" />
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
-        android:text="Login"
         android:background="@drawable/button_corners"
-        app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.817" />
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintVertical_bias="0.675" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="352dp"
+        android:layout_width="409dp"
         android:layout_height="55dp"
         android:ems="10"
         android:hint="Type your Username"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="352dp"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:hint="Type your Password"
-        android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintVertical_bias="0.275" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:passwordToggleEnabled="false"
+        app:passwordToggleTint="@color/MidnightBlue"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintVertical_bias="0.237">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Type Your Password" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,7 @@
         android:layout_width="409dp"
         android:layout_height="55dp"
         android:ems="10"
+        android:outlineAmbientShadowColor="@color/MidnightBlue"
         android:hint="Type your Username"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -46,23 +47,24 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <com.google.android.material.textfield.TextInputLayout
-        app:passwordToggleEnabled="false"
-        app:passwordToggleTint="@color/MidnightBlue"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="405dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/username"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.237">
+        app:layout_constraintVertical_bias="0.237"
+        app:passwordToggleEnabled="false"
+        app:passwordToggleTint="@color/MidnightBlue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
+            android:outlineAmbientShadowColor="@color/MidnightBlue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Type Your Password" />
+            android:hint="Type Your Password"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

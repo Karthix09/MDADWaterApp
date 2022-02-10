@@ -41,7 +41,7 @@ public class NewUserWeight extends AppCompatActivity {
         weightPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                weightDisplay.setText(String.format("Your Weight is: %s", newVal));
+                weightDisplay.setText(String.format("Your Weight is: %s", newVal + "Kg"));
                 userWeight = newVal;
             }
         });

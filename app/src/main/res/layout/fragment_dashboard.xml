@@ -27,12 +27,12 @@
 
     <Button
         android:id="@+id/drankUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="95dp"
+        android:layout_height="91dp"
         android:layout_gravity="bottom|center"
+        android:backgroundTint="@color/MidnightBlue"
         android:background="@drawable/button_corners"
-        android:text="DRANK UP">
-    </Button>
+        android:text="DRANK UP"></Button>
 
 
 </FrameLayout>

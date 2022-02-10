@@ -1,12 +1,18 @@
 package mdad.localdata.mypracticeapplication;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +84,9 @@ public class DashboardFragment extends Fragment{
 
     //Button calculate water in ML
     int waterInML;
+
+    //Vibrator
+    Vibrator vibrator;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -190,7 +199,7 @@ public class DashboardFragment extends Fragment{
 
         //Set the progress value of the bar according to received water drank value
 
-        mWaveLoadingView.setCenterTitle("Your goal for today is " + user_waterRequirement_posted +"ml");
+//        mWaveLoadingView.setCenterTitle("Your goal for today is " + user_waterRequirement_posted +"ml");
 //        pastWaterProgress = 20;
 //        mWaveLoadingView.setProgressValue(pastWaterProgress);
 
@@ -210,7 +219,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -226,6 +235,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
 
@@ -263,7 +282,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -279,6 +298,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
 
@@ -316,7 +345,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -332,6 +361,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
                     }
@@ -367,7 +406,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -383,6 +422,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
                     }
@@ -419,7 +468,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -435,6 +484,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
                     }
@@ -471,7 +530,7 @@ public class DashboardFragment extends Fragment{
                     if (newWaterProgress == 100) {
                         waterCompletionStatus = "Completed";
                         mWaveLoadingView.setProgressValue(newWaterProgress);
-                        mWaveLoadingView.setCenterTitle("You reached your goal for the day");
+                        mWaveLoadingView.setCenterTitle("You reached your goal for the day!!");
                         Log.d("Water progress", "" + newWaterProgress);
                         Log.d("Status", "" + waterCompletionStatus);
 
@@ -487,6 +546,16 @@ public class DashboardFragment extends Fragment{
                         }
                         //API call to Post
                         postWaterStatusApi(jsonData);
+
+                        //Vibrate Effect
+                        vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            //deprecated in API 26
+                            vibrator.vibrate(500);
+                        }
 
                         drankUpBtn.setEnabled(false);
                     }
@@ -521,7 +590,6 @@ public class DashboardFragment extends Fragment{
         };
         drankUpBtn.setOnClickListener(drankUpBtnListener);
 
-        // Get the Water Requirement and set it as the text in the bottle
         return  v;
 
     }
@@ -590,10 +658,24 @@ public class DashboardFragment extends Fragment{
                         if (user_waterStatus.matches("Completed") || user_waterDrankPerc == 100){
                             mWaveLoadingView.setCenterTitle("You reached your goal for the day");
                             drankUpBtn.setEnabled(false); //disable button
+                            //Vibrate Effect
+                            vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                            // Vibrate for 500 milliseconds
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                            } else {
+                                //deprecated in API 26
+                                vibrator.vibrate(500);
+                            }
                         }
                         else{
                             waterInML = (int)((user_waterDrankPerc/100f) * user_waterRequirement_posted);
-                            mWaveLoadingView.setCenterTitle("You have drank " + waterInML + "ml");
+                            if (waterInML == 0){
+                                mWaveLoadingView.setCenterTitle("Your goal for today is " + user_waterRequirement_posted +"ml");
+                            }
+                            else{
+                                mWaveLoadingView.setCenterTitle("You have drank " + waterInML + " ml");
+                            }
                         }
 
                     }

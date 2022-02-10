@@ -99,11 +99,10 @@ public class Dashboard extends AppCompatActivity {
                         selectedFragment = new DashboardFragment();
                         selectedFragment.setArguments(newPage);
                         break;
-                    case R.id.item2:
-                        selectedFragment = new LeaderboardFragment();
-                        break;
+
                     case R.id.item3:
                         selectedFragment = new ProfileFragment();
+                        selectedFragment.setArguments(newPage);
                         break;
                 }
                 //Begin Transaction fragment
